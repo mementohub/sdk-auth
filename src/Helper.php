@@ -3,7 +3,8 @@
 namespace iMemento\SDK\Auth;
 
 use Auth;
-use iMemento\JWT;
+use Session;
+use iMemento\JWT\JWT;
 
 /**
  * Class Helper
@@ -29,16 +30,19 @@ class Helper
     }
 
     /**
-     * @param string $jwt
+     * @param string $auth_jwt
      * @param        $auth_public_key
      * @param object $user
      * @param array  $permissions
      * @return object
      */
-    public static function handleCallback(string $jwt, $auth_public_key, object $user, array $permissions)
+    public static function handleCallback(string $auth_jwt, $auth_public_key, object $user, array $permissions)
     {
         $app_name = env(self::$app_name);
-        $decrypted = new \StdClass;
+
+        $decrypted = JWT::decode($auth_jwt, $auth_public_key);
+
+        Session::put('auth_jwt', $auth_jwt);
 
         $user->id = $decrypted->user_id;
         $user->org_ids = $decrypted->org_ids;
