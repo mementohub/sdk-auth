@@ -1,0 +1,44 @@
+{
+    "name": "imemento/sdk-auth",
+    "description": "SDK for iMemento Auth",
+    "homepage": "https://gitlab.com/imemento/composer/sdk/sdk-auth",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "George Stan",
+            "email": "contact@georgestan.com",
+            "homepage": "http://imemento.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "guzzlehttp/guzzle": "^6.3",
+        "imemento/exceptions": "dev-master",
+        "imemento/jwt": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "iMemento\\SDK\\Auth\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "iMemento\\SDK\\Auth\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "repositories": [
+        {"type": "composer", "url": "https://repo.packagist.com/imemento/"},
+        {"packagist.org": false}
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
