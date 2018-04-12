@@ -36,7 +36,7 @@ class AuthService
      * @param string $password
      * @return mixed
      */
-    public function login(string $email, string $password)
+    public function authenticate(string $email, string $password)
     {
         $url = env($this->url_key) . 'api/v1/authenticate';
 
