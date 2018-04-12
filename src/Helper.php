@@ -39,22 +39,17 @@ class Helper
     }
 
     /**
-     * @param object $request
+     * @param string $auth_jwt
      * @param        $auth_public_key
      * @param object $user
      * @param array  $permissions
      * @return object
      */
-    public static function handleCallback(object $request, $auth_public_key, object $user, array $permissions)
+    public static function handleCallback(string $auth_jwt, $auth_public_key, object $user, array $permissions)
     {
         $app_name = env(self::$app_name);
 
-        $auth_jwt = $request->get('token');
-        $return_url = urldecode($request->get('return_url'));
-
         $decrypted = JWT::decode($auth_jwt, $auth_public_key);
-
-        Session::put('auth_jwt', $auth_jwt);
 
         $user->id = $decrypted->user_id;
         $user->org_ids = $decrypted->org_ids;
@@ -63,10 +58,10 @@ class Helper
 
         $user->createPermissions($permissions, $user->roles);
 
+        Session::put('auth_jwt', $auth_jwt);
         Session::put('user', Crypt::encryptString($user->toJson())); //used in the static user provider
-        Auth::login($user);
 
-        return Redirect::to($return_url);
+        Auth::login($user);
     }
 
 }
