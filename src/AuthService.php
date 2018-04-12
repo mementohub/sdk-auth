@@ -3,6 +3,7 @@
 namespace iMemento\SDK\Auth;
 
 use GuzzleHttp\Client;
+use Request;
 
 /**
  * Class Client
@@ -38,7 +39,8 @@ class AuthService
      */
     public function authenticate(string $email, string $password)
     {
-        $url = env($this->url_key) . 'api/v1/authenticate';
+        $scheme = Request::secure() ? 'https://' : 'http://';
+        $url = $scheme . env($this->url_key) . 'api/v1/authenticate';
 
         $data = [
             'headers' => [
