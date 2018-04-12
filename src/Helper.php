@@ -4,6 +4,7 @@ namespace iMemento\SDK\Auth;
 
 use Auth;
 use Session;
+use Redirect;
 use iMemento\JWT\JWT;
 
 /**
@@ -34,15 +35,18 @@ class Helper
     }
 
     /**
-     * @param string $auth_jwt
+     * @param object $request
      * @param        $auth_public_key
      * @param object $user
      * @param array  $permissions
      * @return object
      */
-    public static function handleCallback(string $auth_jwt, $auth_public_key, object $user, array $permissions)
+    public static function handleCallback(object $request, $auth_public_key, object $user, array $permissions)
     {
         $app_name = env(self::$app_name);
+
+        $auth_jwt = $request->get('token');
+        $return_url = urldecode($request->get('return_url'));
 
         $decrypted = JWT::decode($auth_jwt, $auth_public_key);
 
@@ -57,7 +61,7 @@ class Helper
 
         Auth::login($user);
 
-        return $user;
+        return Redirect::to($return_url);
     }
 
 }
