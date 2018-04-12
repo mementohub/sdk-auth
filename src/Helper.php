@@ -20,12 +20,16 @@ class Helper
     protected static $app_name = 'APP_NAME';
 
     /**
+     * @param string $callback_url
      * @param string $return_url
      * @return mixed
      */
-    public static function redirect(string $return_url)
+    public static function redirect(string $callback_url, string $return_url)
     {
-        $url = env(self::$url_key) . "/login?app_type=fsa&return_url=$return_url";
+        $callback_url = urlencode($callback_url);
+        $return_url = urlencode($return_url);
+
+        $url = env(self::$url_key) . "/login?app_type=fsa&callback_url=$callback_url&return_url=$return_url";
         return redirect()->away($url);
     }
 
