@@ -5,6 +5,7 @@ namespace iMemento\SDK\Auth;
 use Auth;
 use Session;
 use Redirect;
+use Request;
 use iMemento\JWT\JWT;
 
 /**
@@ -30,7 +31,9 @@ class Helper
         $callback_url = urlencode($callback_url);
         $return_url = urlencode($return_url);
 
-        $url = env(self::$url_key) . "/login?app_type=fsa&callback_url=$callback_url&return_url=$return_url";
+        $scheme = Request::secure() ? 'https://' : 'http://';
+
+        $url = $scheme . env(self::$url_key) . "/login?app_type=fsa&callback_url=$callback_url&return_url=$return_url";
         return redirect()->away($url);
     }
 
