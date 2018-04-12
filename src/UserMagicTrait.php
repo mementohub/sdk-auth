@@ -8,16 +8,6 @@ use iMemento\Exceptions\MissingRoleException;
 trait UserMagicTrait
 {
     /**
-     * @var
-     */
-    protected $roles = [];
-
-    /**
-     * @var
-     */
-    protected $permissions = [];
-
-    /**
      * Creates the permissions attribute
      *
      * @param array $permissions
@@ -27,9 +17,9 @@ trait UserMagicTrait
      */
     public function createPermissions(array $permissions, array $roles)
     {
-        $this->roles = $roles;
+        $this->permissions = [];
 
-        foreach($this->roles as $role) {
+        foreach($roles as $role) {
             try {
                 $this->permissions = array_merge($this->permissions, $permissions[$role]);
             } catch (ErrorException $e) {

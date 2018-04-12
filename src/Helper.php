@@ -3,6 +3,7 @@
 namespace iMemento\SDK\Auth;
 
 use Auth;
+use Crypt;
 use Session;
 use Redirect;
 use Request;
@@ -62,6 +63,7 @@ class Helper
 
         $user->createPermissions($permissions, $user->roles);
 
+        Session::put('user', Crypt::encryptString($user->toJson())); //used in the static user provider
         Auth::login($user);
 
         return Redirect::to($return_url);
