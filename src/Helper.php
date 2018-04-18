@@ -17,7 +17,7 @@ use iMemento\JWT\JWT;
 class Helper
 {
     /** @var string  */
-    protected static $url_key = 'IMEMENTO_SDK_AUTH';
+    protected static $url_key = 'ENDPOINT_SSR_AUTH';
 
     /** @var string  */
     protected static $app_name = 'APP_NAME';

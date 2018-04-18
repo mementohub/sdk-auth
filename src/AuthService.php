@@ -13,7 +13,7 @@ use Request;
 class AuthService
 {
     /** @var string  */
-    protected $url_key = 'IMEMENTO_SDK_AUTH';
+    protected $url_key = 'ENDPOINT_SSR_AUTH';
 
     /**
      * @var Client
