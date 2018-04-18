@@ -54,7 +54,7 @@ class Helper
         $user->id = $decrypted->user_id;
         $user->org_ids = $decrypted->org_ids;
         $user->org_user_ids = $decrypted->org_user_ids;
-        $user->roles = $decrypted->roles->$app_name;
+        $user->roles = $decrypted->roles->$app_name ?? [];
 
         $user->createPermissions($permissions, $user->roles);
 
