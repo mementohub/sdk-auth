@@ -41,11 +41,11 @@ class Helper
     /**
      * @param string $auth_jwt
      * @param        $auth_public_key
-     * @param object $user
+     * @param        $user
      * @param array  $permissions
-     * @return object
+     * @param array  $attributes
      */
-    public static function handleCallback(string $auth_jwt, $auth_public_key, object $user, array $permissions)
+    public static function handleCallback(string $auth_jwt, $auth_public_key, $user, array $permissions, array $attributes = null)
     {
         $app_name = env(self::$app_name);
 
@@ -55,6 +55,13 @@ class Helper
         $user->org_ids = $decrypted->org_ids;
         $user->org_user_ids = $decrypted->org_user_ids;
         $user->roles = $decrypted->roles->$app_name ?? [];
+
+        //ability to add or overwrite the user's attributes
+        if (! empty($attributes)) {
+            foreach ($attributes as $k => $v) {
+                $user->$k = $v;
+            }
+        }
 
         $user->createPermissions($permissions, $user->roles);
 
