@@ -54,6 +54,7 @@ class Helper
         $user->id = $decrypted->user_id;
         $user->org_ids = $decrypted->org_ids;
         $user->org_user_ids = $decrypted->org_user_ids;
+        $user->token = $auth_jwt;
         $user->roles = $decrypted->roles->$app_name ?? [];
 
         //ability to add or overwrite the user's attributes
@@ -65,7 +66,6 @@ class Helper
 
         $user->createPermissions($permissions, $user->roles);
 
-        Session::put('auth_jwt', $auth_jwt);
         Session::put('user', Crypt::encryptString($user->toJson())); //used in the static user provider
 
         Auth::login($user);
