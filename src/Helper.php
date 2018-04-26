@@ -2,6 +2,7 @@
 
 namespace iMemento\SDK\Auth;
 
+use App;
 use Auth;
 use Crypt;
 use Session;
@@ -25,16 +26,25 @@ class Helper
     /**
      * @param string $callback_url
      * @param string $return_url
+     * @param bool   $register
      * @return mixed
      */
-    public static function redirect(string $callback_url, string $return_url)
+    public static function redirect(string $callback_url, string $return_url, bool $register = false)
     {
+        $scheme = Request::secure() ? 'https://' : 'http://';
+
         $callback_url = urlencode($callback_url);
         $return_url = urlencode($return_url);
 
-        $scheme = Request::secure() ? 'https://' : 'http://';
+        $action = $register ? 'register' : 'login';
+        $query = http_build_query([
+            'app_type' => 'fsa',
+            'callback_url' => $callback_url,
+            'return_url' => $return_url,
+            'locale' => App::getLocale() ?? 'en',
+        ]);
 
-        $url = $scheme . env(self::$url_key) . "/login?app_type=fsa&callback_url=$callback_url&return_url=$return_url";
+        $url = $scheme . env(self::$url_key) . "/$action?$query";
         return redirect()->away($url);
     }
 
