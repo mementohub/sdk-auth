@@ -90,7 +90,7 @@ class Helper
      * @param string $password
      * @return mixed
      */
-    public static function authenticate(string $email, string $password)
+    public static function authenticate(string $email = null, string $password = null)
     {
         $client = new Client;
 
