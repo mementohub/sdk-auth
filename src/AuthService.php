@@ -46,14 +46,13 @@ class AuthService
             'headers' => [
                 'Accept' => 'application/json',
             ],
-            'form_params' => [
-                'email' => $email,
-                'password' => $password,
+            'json' => [
+                'email' => $email ?? env('APP_EMAIL'),
+                'password' => $password ?? env('APP_PASSWORD'),
             ],
         ];
 
         $response = $this->client->post($url, $data);
-
         return json_decode($response->getBody()->getContents());
     }
 
