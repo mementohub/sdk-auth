@@ -29,20 +29,26 @@ class Helper
      *
      * @param string $callback_url
      * @param string $return_url
+     * @param array  $params
      * @param bool   $register
      * @return mixed
      */
-    public static function redirect(string $callback_url, string $return_url, bool $register = false)
+    public static function redirect(string $callback_url, string $return_url, array $params = [], bool $register = false)
     {
         $scheme = Request::secure() ? 'https://' : 'http://';
         $action = $register ? 'register' : 'login';
 
-        $query = http_build_query([
+        $query = [
             'app_type' => 'fsa',
             'callback_url' => urlencode($callback_url),
             'return_url' => urlencode($return_url),
             'locale' => App::getLocale() ?? 'en',
-        ]);
+        ];
+
+        if (! empty($params))
+            $query = array_merge($query, $params);
+
+        $query = http_build_query($query);
 
         $url = $scheme . env(self::$url_key) . "/$action?$query";
         return redirect()->away($url);
