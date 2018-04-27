@@ -32,15 +32,12 @@ class Helper
     public static function redirect(string $callback_url, string $return_url, bool $register = false)
     {
         $scheme = Request::secure() ? 'https://' : 'http://';
-
-        $callback_url = urlencode($callback_url);
-        $return_url = urlencode($return_url);
-
         $action = $register ? 'register' : 'login';
+
         $query = http_build_query([
             'app_type' => 'fsa',
-            'callback_url' => $callback_url,
-            'return_url' => $return_url,
+            'callback_url' => urlencode($callback_url),
+            'return_url' => urlencode($return_url),
             'locale' => App::getLocale() ?? 'en',
         ]);
 
