@@ -101,7 +101,7 @@ class Helper
         $client = new Client;
 
         $scheme = Request::secure() ? 'https://' : 'http://';
-        $url = $scheme . env(self::$url_key) . 'api/v1/authenticate';
+        $url = $scheme . env(self::$url_key) . '/api/v1/authenticate';
 
         $data = [
             'headers' => [
