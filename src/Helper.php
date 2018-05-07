@@ -35,7 +35,7 @@ class Helper
      */
     public static function redirect(string $callback_url, string $return_url, array $params = [], bool $register = false)
     {
-        $scheme = Request::secure() ? 'https://' : 'http://';
+        $scheme = imemento_request_scheme() . '://';
         $action = $register ? 'register' : 'login';
 
         $query = [
@@ -100,7 +100,7 @@ class Helper
     {
         $client = new Client;
 
-        $scheme = Request::secure() ? 'https://' : 'http://';
+        $scheme = imemento_request_scheme() . '://';
         $url = $scheme . env(self::$url_key) . '/api/v1/authenticate';
 
         $data = [
