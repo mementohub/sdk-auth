@@ -114,7 +114,7 @@ class Helper
         ];
 
         $response = $client->post($url, $data);
-        return json_decode($response->getBody()->getContents());
+        return $response->getBody()->getContents();
     }
 
 }
