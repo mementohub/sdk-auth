@@ -3,7 +3,6 @@
 namespace iMemento\SDK\Auth;
 
 use ErrorException;
-use iMemento\Exceptions\MissingRoleException;
 
 trait UserMagicTrait
 {
@@ -13,7 +12,6 @@ trait UserMagicTrait
      * @param array $permissions
      * @param array $roles
      * @return $this
-     * @throws MissingRoleException
      */
     public function createPermissions(array $permissions, array $roles)
     {
