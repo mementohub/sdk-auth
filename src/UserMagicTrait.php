@@ -3,7 +3,6 @@
 namespace iMemento\SDK\Auth;
 
 use ErrorException;
-use iMemento\Exceptions\MissingRoleException;
 
 trait UserMagicTrait
 {
@@ -13,7 +12,6 @@ trait UserMagicTrait
      * @param array $permissions
      * @param array $roles
      * @return $this
-     * @throws MissingRoleException
      */
     public function createPermissions(array $permissions, array $roles)
     {
@@ -23,7 +21,7 @@ trait UserMagicTrait
             try {
                 $this->permissions = array_merge($this->permissions, $permissions[$role]);
             } catch (ErrorException $e) {
-                throw new MissingRoleException("There is no role [$role] in this application.");
+                \Log::error("There is no role [$role] in " . config('app.name'));
             }
         }
 
