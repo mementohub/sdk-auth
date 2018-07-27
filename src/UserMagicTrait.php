@@ -22,7 +22,7 @@ trait UserMagicTrait
                 try {
                     $this->permissions = array_merge($this->permissions, $permissions[$role]);
                 } catch (ErrorException $e) {
-                    \Log::error("There is no role [$role] in " . config('app.name'));
+                    \Log::warning("There is no role [$role] in " . config('app.name'));
                 }
             }
         }
