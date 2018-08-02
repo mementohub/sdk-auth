@@ -70,8 +70,10 @@ class Helper
         $decrypted = JWT::decode($auth_jwt, $auth_public_key);
 
         $user->id = $decrypted->user_id;
-        $user->org_ids = $decrypted->org_ids;
-        $user->org_user_ids = $decrypted->org_user_ids;
+        $user->org_id = $decrypted->org_id ?? null;
+        $user->org_type = $decrypted->org_type ?? null;
+        $user->org_ids = $decrypted->org_ids ?? [];
+        $user->org_user_ids = $decrypted->org_user_ids ?? [];
         $user->token = $auth_jwt;
         $user->roles = $decrypted->roles->$app_name ?? [];
 
