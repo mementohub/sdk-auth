@@ -22,6 +22,9 @@ class Helper
     protected static $url_key = 'ENDPOINT_SSR_AUTH';
 
     /** @var string  */
+    protected static $url_internal_key = 'ENDPOINT_INTERNAL_SSR_AUTH';
+
+    /** @var string  */
     protected static $app_name = 'APP_NAME';
 
     /**
@@ -100,10 +103,9 @@ class Helper
      */
     public static function authenticate(string $email = null, string $password = null)
     {
-        $client = new Client;
+        $client = new Client();
 
-        $scheme = imemento_request_scheme() . '://';
-        $url = $scheme . env(self::$url_key) . '/api/v1/authenticate';
+        $url = env(self::$url_internal_key) . '/api/v1/authenticate';
 
         $data = [
             'headers' => [
@@ -116,6 +118,7 @@ class Helper
         ];
 
         $response = $client->post($url, $data);
+
         return $response->getBody()->getContents();
     }
 
