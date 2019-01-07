@@ -1,7 +1,7 @@
 {
     "name": "imemento/sdk-auth",
     "description": "SDK for iMemento Auth",
-    "homepage": "https://gitlab.com/imemento/composer/sdk/sdk-auth",
+    "homepage": "https://github.com/mementohub/sdk-auth",
     "license": "MIT",
     "authors": [
         {
@@ -36,10 +36,6 @@
     "config": {
         "sort-packages": true
     },
-    "repositories": [
-        {"type": "composer", "url": "https://repo.packagist.com/imemento/"},
-        {"packagist.org": false}
-    ],
     "minimum-stability": "dev",
     "prefer-stable": false
 }
