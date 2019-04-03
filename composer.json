@@ -1,7 +1,7 @@
 {
     "name": "imemento/sdk-auth",
     "description": "SDK for iMemento Auth",
-    "homepage": "https://gitlab.com/imemento/composer/sdk/sdk-auth",
+    "homepage": "https://github.com/mementohub/sdk-auth",
     "license": "MIT",
     "authors": [
         {
@@ -12,10 +12,10 @@
     ],
     "require": {
         "php": "^7.1",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "^5.7",
         "guzzlehttp/guzzle": "^6.3",
-        "imemento/jwt": "dev-master",
-        "imemento/support": "dev-master"
+        "imemento/jwt": "^5.7",
+        "imemento/support": "^5.7"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.0"
@@ -36,10 +36,6 @@
     "config": {
         "sort-packages": true
     },
-    "repositories": [
-        {"type": "composer", "url": "https://repo.packagist.com/imemento/"},
-        {"packagist.org": false}
-    ],
     "minimum-stability": "dev",
     "prefer-stable": false
 }
