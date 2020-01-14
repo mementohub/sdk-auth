@@ -33,42 +33,42 @@ trait UserMagicTrait
     /**
      * @return array
      */
-    public function getRoles()
+    public function getRoles(): array
     {
-        return $this->roles;
+        return $this->roles ?? [];
     }
 
     /**
      * @return array
      */
-    public function getPermissions()
+    public function getPermissions(): array
     {
-        return $this->permissions;
+        return $this->permissions ?? [];
     }
 
     /**
      * @param $role
      * @return bool
      */
-    public function hasRole(string $role)
+    public function hasRole(string $role): bool
     {
-        return in_array($role, $this->roles);
+        return in_array($role, $this->getRoles());
     }
 
     /**
      * @param $permission
      * @return bool
      */
-    public function hasPermission(string $permission)
+    public function hasPermission(string $permission): bool
     {
-        return in_array($permission, $this->permissions);
+        return in_array($permission, $this->getPermissions());
     }
 
     /**
      * @param $resource
      * @return bool
      */
-    public function owns(object $resource)
+    public function owns(object $resource): bool
     {
         return $this->id === $resource->user_id;
     }
