@@ -68,9 +68,9 @@ trait UserMagicTrait
      * @param $resource
      * @return bool
      */
-    public function owns(object $resource): bool
+    public function owns($resource): bool
     {
-        return $this->id === $resource->user_id;
+        return $this->id === data_get($resource, 'user_id');
     }
 
 }
