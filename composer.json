@@ -12,13 +12,14 @@
     ],
     "require": {
         "php": "^7.1",
-        "laravel/framework": "*",
-        "guzzlehttp/guzzle": "*",
-        "imemento/jwt": "dev-master",
-        "imemento/support": "dev-master"
+        "laravel/framework": "^5.8 || ^6.0 || ^7.0 || ^8.0",
+        "guzzlehttp/guzzle": "^6.3 || ^7.0",
+        "imemento/jwt": "^0.1.0",
+        "imemento/support": "^0.1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.0"
+        "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+        "orchestra/testbench": "^3.8 || ^4.0 || ^5.0 || ^6.0"
     },
     "autoload": {
         "psr-4": {
@@ -27,7 +28,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "iMemento\\SDK\\Auth\\Test\\": "tests"
+            "iMemento\\SDK\\Auth\\Tests\\": "tests"
         }
     },
     "scripts": {
