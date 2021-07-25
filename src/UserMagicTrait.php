@@ -13,7 +13,7 @@ trait UserMagicTrait
      * @param array $roles
      * @return $this
      */
-    public function createPermissions(?array $permissions, ?array $roles)
+    public function createPermissions(?array $permissions = [], ?array $roles = [])
     {
         $this->permissions = [];
 
